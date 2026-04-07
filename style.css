@@ -1,0 +1,525 @@
+/* =====================================================
+   RESET BÁSICO (SEGURO)
+===================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* =====================================================
+   VARIÁVEIS DE COR (SUA PALETA)
+===================================================== */
+:root {
+  --bg-primary: #272b00;
+  --bg-secondary: #54582f;
+  --bg-accent: #86895d;
+
+  --color-highlight: #f8de7e;
+  --color-light: #feeeb8;
+  --color-text: #feeeb8;
+
+  --border-soft: rgba(248, 222, 126, 0.2);
+}
+
+/* =====================================================
+   BASE
+===================================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", Arial, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--color-text);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* =====================================================
+   LINKS E TEXTOS
+===================================================== */
+a {
+  color: var(--color-highlight);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* =====================================================
+   CONTAINER (usado no seu HTML)
+===================================================== */
+.container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =====================================================
+   HEADER / NAV
+===================================================== */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(39, 43, 0, 0.95);
+  border-bottom: 1px solid var(--border-soft);
+  z-index: 1000;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+}
+
+.nav__logo {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-highlight);
+}
+
+.logo-bracket {
+  color: var(--bg-accent);
+}
+
+/* MENU DESKTOP */
+.nav__menu {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+.nav__link {
+  color: var(--color-light);
+  font-weight: 500;
+}
+
+.nav__link.active {
+  color: var(--color-highlight);
+  font-weight: 700;
+}
+
+/* =====================================================
+   BOTÃO HAMBÚRGUER
+===================================================== */
+.nav__toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger__line {
+  width: 26px;
+  height: 3px;
+  background-color: var(--color-highlight);
+}
+
+/* =====================================================
+   OVERLAY MOBILE
+===================================================== */
+.nav__overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 900;
+}
+
+.nav__overlay.is-visible {
+  display: block;
+}
+
+/* =====================================================
+   MAIN / SEÇÕES
+===================================================== */
+.main {
+  padding-top: 90px; /* espaço do header fixo */
+}
+
+/*
+ IMPORTANTE:
+ As seções NÃO começam escondidas.
+ O JS apenas controla a SPA.
+*/
+.section {
+  padding: 60px 0;
+}
+
+/* SPA: só esconde quando JS ativa */
+.section:not(.active) {
+  display: none;
+}
+
+/* =====================================================
+   HOME
+===================================================== */
+.home__layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.home__text {
+  max-width: 600px;
+}
+
+.home__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(248,222,126,0.1);
+  border: 1px solid var(--border-soft);
+  margin-bottom: 16px;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #6be675;
+}
+
+.home__title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  margin-bottom: 10px;
+  color: var(--color-highlight);
+}
+
+.home__subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+}
+
+.subtitle-highlight {
+  color: var(--bg-accent);
+  font-weight: 700;
+}
+
+.home__actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+/* =====================================================
+   BOTÕES
+===================================================== */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background: var(--color-highlight);
+  color: var(--bg-primary);
+}
+
+.btn--outline {
+  border: 2px solid var(--color-highlight);
+  color: var(--color-highlight);
+}
+
+/* =====================================================
+   SOBRE
+===================================================== */
+.sobre__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+}
+
+.sobre__panel {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid var(--border-soft);
+}
+
+/* =====================================================
+   SKILLS
+===================================================== */
+.skills__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-tag {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-soft);
+  font-size: 0.85rem;
+}
+
+/* =====================================================
+   PROJETOS
+===================================================== */
+.projetos__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--border-soft);
+}
+
+.card__title {
+  color: var(--color-highlight);
+  margin-bottom: 8px;
+}
+
+/* =====================================================
+   REDES SOCIAIS
+===================================================== */
+.redes__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.social-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-secondary);
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+}
+
+/* =====================================================
+   BOTÃO VOLTAR AO TOPO
+===================================================== */
+.top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--color-highlight);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  display: none;
+}
+
+.top-btn.visible {
+  display: block;
+}
+
+/* =====================================================
+   FOOTER FIXO
+===================================================== */
+.footer-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-soft);
+  padding: 14px 20px;
+  text-align: center;
+  z-index: 900;
+}
+
+.footer__text {
+  font-size: 0.85rem;
+  color: var(--color-light);
+}
+
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+@media (max-width: 768px) {
+  .nav__toggle {
+    display: block;
+  }
+
+  .nav__menu {
+    position: fixed;
+    top: 72px;
+    right: -100%;
+    width: 260px;
+    height: 100vh;
+    background: var(--bg-secondary);
+    flex-direction: column;
+    padding: 24px;
+    transition: right 0.3s ease;
+    z-index: 999;
+  }
+
+  .nav__menu.is-open {
+    right: 0;
+  }
+
+  .sobre__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home__layout {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .home__actions {
+    justify-content: center;
+  }
+}
+
+/* =====================================================
+   REDES SOCIAIS — ÍCONES
+===================================================== */
+.social-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  color: var(--color-light);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.social-card:hover {
+  transform: translateY(-3px);
+  background: #5f6437;
+}
+
+.social-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--color-highlight);
+  flex-shrink: 0;
+}
+
+.social-card span {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* =====================================================
+   ANIMAÇÕES SEGURAS
+===================================================== */
+.section {
+  animation: fadeUp 0.4s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0.85;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Micro interação em botões */
+.btn,
+.nav__link {
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn:hover,
+.nav__link:hover {
+  transform: translateY(-2px);
+}
+
+.nav__link.active {
+  position: relative;
+}
+
+.nav__link.active::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-highlight);
+}
+
+/* =====================================================
+   FOTO DE PERFIL — HOME
+===================================================== */
+.home__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-ring {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  padding: 6px;
+  background: linear-gradient(
+    135deg,
+    var(--color-highlight),
+    var(--bg-accent)
+  );
+}
+
+.home__avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+
+  
+@media (max-width: 768px) {
+  .avatar-ring {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+}
